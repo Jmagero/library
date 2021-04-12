@@ -1,5 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: #f9fafb;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+}
+
+.head {
+  text-align: center;
+}
+
+form {
+  visibility: hidden;
 }
 
 /* The switch - the box around the slider */
@@ -43,11 +59,11 @@
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: rgb(78, 218, 78);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px rgb(78, 218, 78);
 }
 
 input:checked + .slider:before {

@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Library Application</h1>
-    <button>New Book</button>
+    <header class="head">
+      <h1>Library Application</h1>
+      <button>New Book</button>
+    </header>
     <form id="form" class="form">
         <div class="form-control">
           <label for="title">Title:</label>
@@ -23,7 +25,7 @@
           <label for="number-of-pages">Number of pages:</label>
           <input type="text" id="number-of-pages" placeholder="number of pages">
         </div>
-        <div class="read-toggle">
+        <div class="form-control read-toggle">
           <span>Read the book?</span>
           <label class="switch">
             <input type="checkbox">
