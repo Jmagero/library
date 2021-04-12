@@ -5,21 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Library Application</h1>
     <button>New Book</button>
-    <form action="">
-        <label for="ftitie">title</label>
-        <input type="text" id="ftitle" name="ftittle">
-        <label for="author">author</label>
-        <input type="text" id="fauthor" name="fauthor">
-        <label for="fpages">pages</label>
-        <input type="text" id="fpages" name="fpages">
-        <label for="fread"></label>
-        <input type="radio" id="fread" name="fread" value="Yes">
+    <form id="form" class="form">
+        <div class="form-control">
+          <label for="title">Title:</label>
+          <input type="text" id="title" placeholder="title">
+        </div>
+        <div class="form-control">
+          <label for="author">Author:</label>
+          <input type="text" id="author" placeholder="author">
+        </div>
+        <div class="form-control">
+          <label for="number-of-pages">Number of pages:</label>
+          <input type="text" id="number-of-pages" placeholder="number of pages">
+        </div>
+        <div class="read-toggle">
+          <span>Read the book?</span>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+        <button type="submit">Add Book</button>
     </form>
-   <script src="index.js"></script>
+   <script src="script.js"></script>
 </body>
 </html>
