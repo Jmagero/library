@@ -47,11 +47,13 @@ body {
   width: 60%;
   margin: 100px auto;
   position: relative;
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none;
 }
 
 .form-container.visible {
-  visibility: visible;
+  /* visibility: visible; */
+  display: block;
   z-index: 100;
 }
 
@@ -186,4 +188,9 @@ input:checked + .slider:before {
 .btn-add-book {
   width: 40%;
   margin: auto;
+}
+
+.card {
+  background-color: #fff;
+  text-align: center;
 }

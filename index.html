@@ -28,13 +28,13 @@
           <input type="text" id="author" placeholder="author">
         </div>
         <div class="form-control">
-          <label for="number-of-pages">Number of pages:</label>
-          <input type="text" id="number-of-pages" placeholder="number of pages">
+          <label for="pages">Number of pages:</label>
+          <input type="text" id="pages" placeholder="number of pages">
         </div>
         <div class="form-control read-toggle">
           <span class="read-book">Read the book?</span>
           <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" id="read" value="No">
             <span class="slider round"></span>
           </label>
         </div>
@@ -42,6 +42,12 @@
         <button type="submit" class="form-btn btn-add-book" id="add-book-btn">Add Book</button>
       </form>
     </main>
+    <div class="card" id="card">
+      <p class="bk-title" id="bk-title"></p>
+      <p class="bk-author" id="bk-author"></p>
+      <p class="bk-pages" id="bk-pages"></p>
+      <p class="bk-read" id="bk-read"></p>
+    </div>
    <script src="script.js"></script>
 </body>
 </html>
