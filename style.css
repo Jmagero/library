@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
+:root {
+  --primary-color: #2ecc71;
+  --secondary-color: #e74c3c;
+  --btn-color: #3498db;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,12 +16,67 @@ body {
   margin: 0;
 }
 
-.head {
+.heading {
   text-align: center;
 }
 
-form {
-  visibility: hidden;
+.heading button {
+  width: 30%;
+  margin: 50px auto;
+}
+
+.form-container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 60%;
+  margin: 100px auto;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  color: #ddd7ce;
+  top: 0px;
+  right: 10px;
+  font-size: 4rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.form {
+  padding: 30px 40px;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control label {
+  color: #777;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
 }
 
 /* The switch - the box around the slider */
@@ -79,4 +140,29 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.read-toggle {
+  display: flex;
+}
+
+.read-book {
+  margin-right: 30px;
+}
+
+.form-btn {
+  cursor: pointer;
+  background-color: var(--btn-color);
+  border: 2px solid var(--btn-color);
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.btn-add-book {
+  width: 40%;
+  margin: auto;
 }
