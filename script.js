@@ -25,15 +25,7 @@ function addBookToLibrary(inputArr) {
 
 //Display book
 function displayBook(library) {
-  let bkTitle = document.getElementById('bk-title')
-  let bkAuthor = document.getElementById('bk-author')
-  let bkPages = document.getElementById('bk-pages')
-  let bkRead = document.getElementById('bk-read')
   library.forEach(function(bk) {
-    bkTitle.innerText = 'Title: ' + bk.title;
-    bkAuthor.innerText = 'Author: ' + bk.author;
-    bkPages.innerText = 'Number of pages: ' + bk.pages;
-    bkRead.innerText = 'Read: ' + bk.read;
   });
 }
 
@@ -43,7 +35,7 @@ new_book_btn.addEventListener('click', function(e){
 });
 
 read.addEventListener('click', function(e){
-  read.value = 'Yes';
+  read.setAttribute('value', 'Yes');
 });
 
 form.addEventListener('submit', function(e){
@@ -51,9 +43,8 @@ form.addEventListener('submit', function(e){
   book = new Book(title.value, author.value, pages.value, read.value);
   addBookToLibrary(book)
   form.reset();
-  read.value = 'No';
+  read.setAttribute('value', 'No');
   displayBook(myLibrary)
   form_container.classList.remove('visible');
   backdrop.classList.remove('display');
-  console.log(myLibrary);
 });
