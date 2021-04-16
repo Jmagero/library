@@ -100,3 +100,15 @@ closeBtn.addEventListener('click', function(e) {
 read.addEventListener('click', function(e){
   read.setAttribute('value', 'Yes');
 });
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  book = new Book(title.value, author.value, pages.value, read.value);
+  addBookToLibrary(book);
+  form.reset();
+  read.setAttribute('value', 'No');
+  formContainer.classList.remove('visible');
+  backDrop.classList.remove('display');
+  card.classList.add('visible');
+  displayBooks(myLibrary);
+});
