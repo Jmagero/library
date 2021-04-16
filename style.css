@@ -213,3 +213,28 @@ input:checked + .slider:before {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+.removeBtn,
+.toggleBtn {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 16px;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+
+.toggleBtn {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.toggleBtn.status-color {
+  color: var(--secondary-color);
+  font-weight: bolder;
+}
+
+.removeBtn {
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
