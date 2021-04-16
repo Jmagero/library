@@ -170,3 +170,20 @@ input:checked + .slider:before {
 .read-book {
   margin-right: 30px;
 }
+
+.form-btn {
+  cursor: pointer;
+  background-color: var(--btn-color);
+  border: 2px solid var(--btn-color);
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.btn-add-book {
+  width: 40%;
+  margin: auto;
+}
