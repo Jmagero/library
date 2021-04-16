@@ -55,3 +55,17 @@ body {
   z-index: 100;
 }
 
+.close {
+  position: absolute;
+  color: #ddd7ce;
+  top: 0px;
+  right: 10px;
+  font-size: 4rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.close:hover {
+  cursor: pointer;
+}
