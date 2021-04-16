@@ -10,3 +10,17 @@ const card = document.getElementById('card');
 let read = document.getElementById('read');
 let myLibrary = [];
 let book;
+
+//Book constructor
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+
+// Add book to library
+function addBookToLibrary(inputArr) {
+  myLibrary.push(inputArr);
+}
+
