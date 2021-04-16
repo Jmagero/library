@@ -89,3 +89,10 @@ newBookBtn.addEventListener('click', function(e){
   card.classList.remove('visible');
   card.classList.add('not-visible');
 });
+
+closeBtn.addEventListener('click', function(e) {
+  form.reset();
+  read.setAttribute('value', 'No');
+  formContainer.classList.remove('visible');
+  backDrop.classList.remove('display');
+});
