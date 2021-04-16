@@ -69,3 +69,15 @@ function removeBook(element){
   let removedbk = myLibrary.splice(index, 1);
   displayBooks(myLibrary);
 }
+
+//Toggle the read status
+function toggleStatus(element){
+  let statusIndex = parseInt(element.getAttribute('data-status'), 10);
+  if (myLibrary[statusIndex].read === 'Yes') {
+    myLibrary[statusIndex].read = 'No'
+  } else {
+    myLibrary[statusIndex].read = 'Yes'
+  }
+
+  displayBooks(myLibrary);
+}
