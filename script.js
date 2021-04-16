@@ -8,7 +8,6 @@ const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const card = document.getElementById('card');
 const read = document.getElementById('read');
-const removeBookButton = document.querySelector("button[onclick='removeBook']");
 const myLibrary = [];
 let book;
 
@@ -99,8 +98,7 @@ card.addEventListener('click', (e) => {
     const index = parseInt(e.target.getAttribute('data-index'), 10);
     myLibrary.splice(index, 1);
     displayBooks(myLibrary);
-	}
-  else if (e.target && e.target.matches('button.toggleBtn')) {
+  } else if (e.target && e.target.matches('button.toggleBtn')) {
     // Toggle the read status
     const statusIndex = parseInt(e.target.getAttribute('data-status'), 10);
     if (myLibrary[statusIndex].read === 'Yes') {
@@ -108,7 +106,7 @@ card.addEventListener('click', (e) => {
     } else {
       myLibrary[statusIndex].read = 'Yes';
     }
-  
+
     displayBooks(myLibrary);
   }
 });
