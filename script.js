@@ -7,11 +7,11 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const card = document.getElementById('card');
-let read = document.getElementById('read');
-let myLibrary = [];
+const read = document.getElementById('read');
+const myLibrary = [];
 let book;
 
-//Book constructor
+// Book constructor
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -24,84 +24,84 @@ function addBookToLibrary(inputArr) {
   myLibrary.push(inputArr);
 }
 
-//Display single book
+// Display single book
 function displayBook(newBook) {
-  let bookContainer = card.appendChild(document.createElement('div'));
-  bookContainer.setAttribute('class','bkcontainer');
-  for (const [key, value] of Object.entries(newBook)) {
+  const bookContainer = card.appendChild(document.createElement('div'));
+  bookContainer.setAttribute('class', 'bkcontainer');
+  Object.entries(newBook).forEach((book) => {
     let newElem;
+    const [key, value] = book;
 
-    if(key == 'read'){
+    if (key === 'read') {
       newElem = bookContainer.appendChild(document.createElement('button'));
-      newElem.setAttribute('class','toggleBtn');
-      newElem.setAttribute('data-status',`${myLibrary.indexOf(newBook)}`);
+      newElem.setAttribute('class', 'toggleBtn');
+      newElem.setAttribute('data-status', `${myLibrary.indexOf(newBook)}`);
       newElem.setAttribute('onclick', 'toggleStatus(this);');
-      value === 'No' ? newElem.classList.add('status-color') : newElem.classList.remove('status-color');
-    }
-    else {
+      if (value === 'No') { newElem.classList.add('status-color'); } else { newElem.classList.remove('status-color'); }
+    } else {
       newElem = bookContainer.appendChild(document.createElement('p'));
     }
 
     newElem.appendChild(document.createTextNode(`${key} : ${value}`));
-  }
+  });
 
-  let removeBtn = bookContainer.appendChild(document.createElement('button'));
+  const removeBtn = bookContainer.appendChild(document.createElement('button'));
   removeBtn.appendChild(document.createTextNode('Remove Book'));
-  removeBtn.setAttribute('class','removeBtn');
+  removeBtn.setAttribute('class', 'removeBtn');
   removeBtn.setAttribute('data-index', `${myLibrary.indexOf(newBook)}`);
   removeBtn.setAttribute('onclick', 'removeBook(this);');
 }
 
-//Display all books
+// Display all books
 function displayBooks(library) {
   while (card.childNodes.length) {
     card.removeChild(card.lastChild);
   }
 
-  library.forEach(function(book) {
+  library.forEach((book) => {
     displayBook(book);
   });
 }
 
-//Remove a book
-function removeBook(element){
-  let index = parseInt(element.getAttribute('data-index'), 10);
-  let removedbk = myLibrary.splice(index, 1);
+// Remove a book
+function removeBook(element) {
+  const index = parseInt(element.getAttribute('data-index'), 10);
+  myLibrary.splice(index, 1);
   displayBooks(myLibrary);
 }
 
-//Toggle the read status
-function toggleStatus(element){
-  let statusIndex = parseInt(element.getAttribute('data-status'), 10);
+// Toggle the read status
+function toggleStatus(element) {
+  const statusIndex = parseInt(element.getAttribute('data-status'), 10);
   if (myLibrary[statusIndex].read === 'Yes') {
-    myLibrary[statusIndex].read = 'No'
+    myLibrary[statusIndex].read = 'No';
   } else {
-    myLibrary[statusIndex].read = 'Yes'
+    myLibrary[statusIndex].read = 'Yes';
   }
 
   displayBooks(myLibrary);
 }
 
-//Event Listeners
-newBookBtn.addEventListener('click', function(e){
+// Event Listeners
+newBookBtn.addEventListener('click', () => {
   formContainer.classList.add('visible');
   backDrop.classList.add('display');
   card.classList.remove('visible');
   card.classList.add('not-visible');
 });
 
-closeBtn.addEventListener('click', function(e) {
+closeBtn.addEventListener('click', () => {
   form.reset();
   read.setAttribute('value', 'No');
   formContainer.classList.remove('visible');
   backDrop.classList.remove('display');
 });
 
-read.addEventListener('click', function(e){
+read.addEventListener('click', () => {
   read.setAttribute('value', 'Yes');
 });
 
-form.addEventListener('submit', function(e){
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   book = new Book(title.value, author.value, pages.value, read.value);
   addBookToLibrary(book);
