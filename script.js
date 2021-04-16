@@ -96,3 +96,7 @@ closeBtn.addEventListener('click', function(e) {
   formContainer.classList.remove('visible');
   backDrop.classList.remove('display');
 });
+
+read.addEventListener('click', function(e){
+  read.setAttribute('value', 'Yes');
+});
