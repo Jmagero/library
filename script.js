@@ -24,3 +24,13 @@ function addBookToLibrary(inputArr) {
   myLibrary.push(inputArr);
 }
 
+//Display all books
+function displayBooks(library) {
+  while (card.childNodes.length) {
+    card.removeChild(card.lastChild);
+  }
+
+  library.forEach(function(book) {
+    displayBook(book);
+  });
+}
