@@ -81,3 +81,11 @@ function toggleStatus(element){
 
   displayBooks(myLibrary);
 }
+
+//Event Listeners
+newBookBtn.addEventListener('click', function(e){
+  formContainer.classList.add('visible');
+  backDrop.classList.add('display');
+  card.classList.remove('visible');
+  card.classList.add('not-visible');
+});
