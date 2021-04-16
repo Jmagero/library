@@ -62,3 +62,10 @@ function displayBooks(library) {
     displayBook(book);
   });
 }
+
+//Remove a book
+function removeBook(element){
+  let index = parseInt(element.getAttribute('data-index'), 10);
+  let removedbk = myLibrary.splice(index, 1);
+  displayBooks(myLibrary);
+}
