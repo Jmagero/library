@@ -24,6 +24,34 @@ function addBookToLibrary(inputArr) {
   myLibrary.push(inputArr);
 }
 
+//Display single book
+function displayBook(newBook) {
+  let bookContainer = card.appendChild(document.createElement('div'));
+  bookContainer.setAttribute('class','bkcontainer');
+  for (const [key, value] of Object.entries(newBook)) {
+    let newElem;
+
+    if(key == 'read'){
+      newElem = bookContainer.appendChild(document.createElement('button'));
+      newElem.setAttribute('class','toggleBtn');
+      newElem.setAttribute('data-status',`${myLibrary.indexOf(newBook)}`);
+      newElem.setAttribute('onclick', 'toggleStatus(this);');
+      value === 'No' ? newElem.classList.add('status-color') : newElem.classList.remove('status-color');
+    }
+    else {
+      newElem = bookContainer.appendChild(document.createElement('p'));
+    }
+
+    newElem.appendChild(document.createTextNode(`${key} : ${value}`));
+  }
+
+  let removeBtn = bookContainer.appendChild(document.createElement('button'));
+  removeBtn.appendChild(document.createTextNode('Remove Book'));
+  removeBtn.setAttribute('class','removeBtn');
+  removeBtn.setAttribute('data-index', `${myLibrary.indexOf(newBook)}`);
+  removeBtn.setAttribute('onclick', 'removeBook(this);');
+}
+
 //Display all books
 function displayBooks(library) {
   while (card.childNodes.length) {
