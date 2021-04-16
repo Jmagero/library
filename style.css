@@ -30,3 +30,28 @@ body {
 .backdrop.display {
   display: block;
 }
+
+.heading {
+  text-align: center;
+}
+
+.heading button {
+  width: 30%;
+  margin: 50px auto;
+}
+
+.form-container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 60%;
+  margin: 100px auto;
+  position: relative;
+  display: none;
+}
+
+.form-container.visible {
+  display: block;
+  z-index: 100;
+}
+
