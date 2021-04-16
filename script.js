@@ -8,6 +8,7 @@ const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const card = document.getElementById('card');
 const read = document.getElementById('read');
+const removeBookButton = document.querySelector("button[onclick='removeBook']");
 const myLibrary = [];
 let book;
 
@@ -36,7 +37,6 @@ function displayBook(newBook) {
       newElem = bookContainer.appendChild(document.createElement('button'));
       newElem.setAttribute('class', 'toggleBtn');
       newElem.setAttribute('data-status', `${myLibrary.indexOf(newBook)}`);
-      newElem.setAttribute('onclick', 'toggleStatus(this);');
       if (value === 'No') { newElem.classList.add('status-color'); } else { newElem.classList.remove('status-color'); }
     } else {
       newElem = bookContainer.appendChild(document.createElement('p'));
@@ -49,7 +49,6 @@ function displayBook(newBook) {
   removeBtn.appendChild(document.createTextNode('Remove Book'));
   removeBtn.setAttribute('class', 'removeBtn');
   removeBtn.setAttribute('data-index', `${myLibrary.indexOf(newBook)}`);
-  removeBtn.setAttribute('onclick', 'removeBook(this);');
 }
 
 // Display all books
@@ -61,25 +60,6 @@ function displayBooks(library) {
   library.forEach((book) => {
     displayBook(book);
   });
-}
-
-// Remove a book
-function removeBook(element) {
-  const index = parseInt(element.getAttribute('data-index'), 10);
-  myLibrary.splice(index, 1);
-  displayBooks(myLibrary);
-}
-
-// Toggle the read status
-function toggleStatus(element) {
-  const statusIndex = parseInt(element.getAttribute('data-status'), 10);
-  if (myLibrary[statusIndex].read === 'Yes') {
-    myLibrary[statusIndex].read = 'No';
-  } else {
-    myLibrary[statusIndex].read = 'Yes';
-  }
-
-  displayBooks(myLibrary);
 }
 
 // Event Listeners
@@ -111,4 +91,24 @@ form.addEventListener('submit', (e) => {
   backDrop.classList.remove('display');
   card.classList.add('visible');
   displayBooks(myLibrary);
+});
+
+card.addEventListener('click', (e) => {
+  if (e.target && e.target.matches('button.removeBtn')) {
+    // Remove a book
+    const index = parseInt(e.target.getAttribute('data-index'), 10);
+    myLibrary.splice(index, 1);
+    displayBooks(myLibrary);
+	}
+  else if (e.target && e.target.matches('button.toggleBtn')) {
+    // Toggle the read status
+    const statusIndex = parseInt(e.target.getAttribute('data-status'), 10);
+    if (myLibrary[statusIndex].read === 'Yes') {
+      myLibrary[statusIndex].read = 'No';
+    } else {
+      myLibrary[statusIndex].read = 'Yes';
+    }
+  
+    displayBooks(myLibrary);
+  }
 });
