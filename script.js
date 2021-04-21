@@ -3,7 +3,6 @@ const newBookBtn = document.getElementById('new-book-btn');
 const formContainer = document.querySelector('.form-container');
 const backDrop = document.querySelector('.backdrop');
 const card = document.getElementById('card');
-const bookContainer = card.appendChild(document.createElement('div'));
 const form = document.getElementById('form');
 const title = document.getElementById('title');
 const author = document.getElementById('author');
@@ -13,13 +12,13 @@ const myLibrary = [];
 let book;
 
 // Factory Function book
-const bookFactory = (title, author, pages, read) => {
-  return {title, author,pages,read}
-}
+const bookFactory = (title, author, pages, read) => ({
+  title, author, pages, read,
+});
 
 // Module
 
-const myModule =  (() => {
+const myModule = (() => {
   // display book
   const displayBook = (newBook) => {
     const bookContainer = card.appendChild(document.createElement('div'));
@@ -27,7 +26,7 @@ const myModule =  (() => {
     Object.entries(newBook).forEach((book) => {
       let newElem;
       const [key, value] = book;
-  
+
       if (key === 'read') {
         newElem = bookContainer.appendChild(document.createElement('button'));
         newElem.setAttribute('class', 'toggleBtn');
@@ -36,39 +35,37 @@ const myModule =  (() => {
       } else {
         newElem = bookContainer.appendChild(document.createElement('p'));
       }
-  
+
       newElem.appendChild(document.createTextNode(`${key} : ${value}`));
     });
     const removeBtn = bookContainer.appendChild(document.createElement('button'));
     removeBtn.appendChild(document.createTextNode('Remove Book'));
     removeBtn.setAttribute('class', 'removeBtn');
     removeBtn.setAttribute('data-index', `${myLibrary.indexOf(newBook)}`);
-  } 
+  };
 
   // display books
   const displayBooks = (library) => {
     while (card.childNodes.length) {
       card.removeChild(card.lastChild);
     }
-  
+
     library.forEach((book) => {
       displayBook(book);
     });
-  }
-  
+  };
+
   // Add book to library
-  const addBookToLibrary = (inputArr) =>{
+  const addBookToLibrary = (inputArr) => {
     myLibrary.push(inputArr);
-  }
+  };
 
   return {
     displayBook,
     displayBooks,
-    addBookToLibrary
+    addBookToLibrary,
   };
-  
 })();
-
 
 // Event Listeners
 newBookBtn.addEventListener('click', () => {
@@ -92,7 +89,6 @@ read.addEventListener('click', () => {
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   book = bookFactory(title.value, author.value, pages.value, read.value);
-  console.log(book);
   myModule.addBookToLibrary(book);
   form.reset();
   read.setAttribute('value', 'No');
