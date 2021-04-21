@@ -2,64 +2,73 @@ const closeBtn = document.getElementById('close');
 const newBookBtn = document.getElementById('new-book-btn');
 const formContainer = document.querySelector('.form-container');
 const backDrop = document.querySelector('.backdrop');
+const card = document.getElementById('card');
+const bookContainer = card.appendChild(document.createElement('div'));
 const form = document.getElementById('form');
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
-const card = document.getElementById('card');
 const read = document.getElementById('read');
 const myLibrary = [];
 let book;
 
-// Book constructor
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+// Factory Function book
+const bookFactory = (title, author, pages, read) => {
+  return {title, author,pages,read}
 }
 
-// Add book to library
-function addBookToLibrary(inputArr) {
-  myLibrary.push(inputArr);
-}
+// Module
 
-// Display single book
-function displayBook(newBook) {
-  const bookContainer = card.appendChild(document.createElement('div'));
-  bookContainer.setAttribute('class', 'bkcontainer');
-  Object.entries(newBook).forEach((book) => {
-    let newElem;
-    const [key, value] = book;
+const myModule =  (() => {
+  // display book
+  const displayBook = (newBook) => {
+    const bookContainer = card.appendChild(document.createElement('div'));
+    bookContainer.setAttribute('class', 'bkcontainer');
+    Object.entries(newBook).forEach((book) => {
+      let newElem;
+      const [key, value] = book;
+  
+      if (key === 'read') {
+        newElem = bookContainer.appendChild(document.createElement('button'));
+        newElem.setAttribute('class', 'toggleBtn');
+        newElem.setAttribute('data-status', `${myLibrary.indexOf(newBook)}`);
+        if (value === 'No') { newElem.classList.add('status-color'); } else { newElem.classList.remove('status-color'); }
+      } else {
+        newElem = bookContainer.appendChild(document.createElement('p'));
+      }
+  
+      newElem.appendChild(document.createTextNode(`${key} : ${value}`));
+    });
+    const removeBtn = bookContainer.appendChild(document.createElement('button'));
+    removeBtn.appendChild(document.createTextNode('Remove Book'));
+    removeBtn.setAttribute('class', 'removeBtn');
+    removeBtn.setAttribute('data-index', `${myLibrary.indexOf(newBook)}`);
+  } 
 
-    if (key === 'read') {
-      newElem = bookContainer.appendChild(document.createElement('button'));
-      newElem.setAttribute('class', 'toggleBtn');
-      newElem.setAttribute('data-status', `${myLibrary.indexOf(newBook)}`);
-      if (value === 'No') { newElem.classList.add('status-color'); } else { newElem.classList.remove('status-color'); }
-    } else {
-      newElem = bookContainer.appendChild(document.createElement('p'));
+  // display books
+  const displayBooks = (library) => {
+    while (card.childNodes.length) {
+      card.removeChild(card.lastChild);
     }
-
-    newElem.appendChild(document.createTextNode(`${key} : ${value}`));
-  });
-
-  const removeBtn = bookContainer.appendChild(document.createElement('button'));
-  removeBtn.appendChild(document.createTextNode('Remove Book'));
-  removeBtn.setAttribute('class', 'removeBtn');
-  removeBtn.setAttribute('data-index', `${myLibrary.indexOf(newBook)}`);
-}
-
-// Display all books
-function displayBooks(library) {
-  while (card.childNodes.length) {
-    card.removeChild(card.lastChild);
+  
+    library.forEach((book) => {
+      displayBook(book);
+    });
+  }
+  
+  // Add book to library
+  const addBookToLibrary = (inputArr) =>{
+    myLibrary.push(inputArr);
   }
 
-  library.forEach((book) => {
-    displayBook(book);
-  });
-}
+  return {
+    displayBook,
+    displayBooks,
+    addBookToLibrary
+  };
+  
+})();
+
 
 // Event Listeners
 newBookBtn.addEventListener('click', () => {
@@ -82,14 +91,15 @@ read.addEventListener('click', () => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  book = new Book(title.value, author.value, pages.value, read.value);
-  addBookToLibrary(book);
+  book = bookFactory(title.value, author.value, pages.value, read.value);
+  console.log(book);
+  myModule.addBookToLibrary(book);
   form.reset();
   read.setAttribute('value', 'No');
   formContainer.classList.remove('visible');
   backDrop.classList.remove('display');
   card.classList.add('visible');
-  displayBooks(myLibrary);
+  myModule.displayBooks(myLibrary);
 });
 
 card.addEventListener('click', (e) => {
@@ -97,7 +107,7 @@ card.addEventListener('click', (e) => {
     // Remove a book
     const index = parseInt(e.target.getAttribute('data-index'), 10);
     myLibrary.splice(index, 1);
-    displayBooks(myLibrary);
+    myModule.displayBooks(myLibrary);
   } else if (e.target && e.target.matches('button.toggleBtn')) {
     // Toggle the read status
     const statusIndex = parseInt(e.target.getAttribute('data-status'), 10);
@@ -107,6 +117,6 @@ card.addEventListener('click', (e) => {
       myLibrary[statusIndex].read = 'Yes';
     }
 
-    displayBooks(myLibrary);
+    myModule.displayBooks(myLibrary);
   }
 });
