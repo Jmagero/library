@@ -11,10 +11,15 @@ const read = document.getElementById('read');
 const myLibrary = [];
 let book;
 
-// Factory Function book
-const bookFactory = (title, author, pages, read) => ({
-  title, author, pages, read,
-});
+// Class Book
+class Book {
+  constructor(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+}
 
 // Module
 
@@ -88,7 +93,7 @@ read.addEventListener('click', () => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  book = bookFactory(title.value, author.value, pages.value, read.value);
+  book = new Book(title.value, author.value, pages.value, read.value);
   myModule.addBookToLibrary(book);
   form.reset();
   read.setAttribute('value', 'No');
